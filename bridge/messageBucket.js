@@ -36,9 +36,7 @@ Bucket.prototype.update = function () {
         if(this._monospace) str = '`' + str + '`'
         this._channel.send(str, {split: true}) // split just in case
 
-        console.log(this._messages)
         this.clear()
-        console.log(this._messages)
     }
 }
 

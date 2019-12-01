@@ -7,7 +7,7 @@ const client = new Discord.Client({
 
 client.on('ready', () => {
     console.log(`[discord] Logged in as ${client.user.tag}.`);
-    if(!client._config.prefix) client._config.prefix = `<${client.user.id}> `
+    // if(!client._config.prefix) client._config.prefix = `<${client.user.id}> `
     client._chat = client.channels.get(client._config.channels.chat) 
     client._log  = client.channels.get(client._config.channels.log)
 });
