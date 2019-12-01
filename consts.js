@@ -2,9 +2,10 @@
 
 const consts = {
     regex: {
+        action: /^\S+ (joined|left) the game$/,
+        chat: /^<(.+)> (.+)$/,
         info: /^\[.+] \[Server thread\/INFO]: (.+)$/,
-        message: /^<(.+)> (.+)$/,
-        player: /^\S+ (joined|left) the game$/
+        me: /^\* (\w+) (.+)$/
     },
     updateInterval: 2000,
     userCacheTime: 3600,
