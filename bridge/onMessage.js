@@ -20,7 +20,6 @@ module.exports = (discord, pterodactyl, consts) => {
         }
 
         if(msg.channel.id == msg.client._log.id && validMember(msg)) {
-            console.log('Is this log?')
             pterodactyl.emit('send command', msg.content);
         }
     })

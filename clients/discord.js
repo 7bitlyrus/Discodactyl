@@ -1,7 +1,8 @@
 const Discord = require('discord.js')
 const client = new Discord.Client({
     "messageCacheLifetime": 60,
-    "messageSweepInterval": 60
+    "messageSweepInterval": 60,
+    "disableEveryone": true
 });
 
 
@@ -45,7 +46,9 @@ module.exports = (config) => {
         config.webhook  = {}
         client._webhook = undefined
     } else {
-        client._webhook = new Discord.WebhookClient(config.webhook.id, config.webhook.token)
+        client._webhook = new Discord.WebhookClient(config.webhook.id, config.webhook.token, {
+            "disableEveryone": true
+        })
     }
 
     client._config = config
