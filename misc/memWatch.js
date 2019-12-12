@@ -12,8 +12,8 @@ module.exports = (pterodactyl, maxmem) => {
         if(mem.percent > maxmem && (lastRestart + 60) < now) {
             lastRestart = now
 
-            pterodactyl.emit('send command', 'tell Lyrus_ [!!!] Server restarting to prevent instability in 15 seconds!')
-            pterodactyl.emit('send command', `tell Lyrus_ Memory limit exceeded: ${formatted}`)
+            pterodactyl.emit('send command', 'say Server restarting to prevent instability in 15 seconds!')
+            pterodactyl.emit('send command', `say Memory limit exceeded: ${formatted}`)
             pterodactyl.emit('send command', `save-all`)
             setInterval(() => pterodactyl.emit('set status', 'restart'), 15*1000)
         }

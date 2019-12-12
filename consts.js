@@ -1,9 +1,9 @@
-// Don't modify this file directly: add a regex object to your config.json to add overrides.
+// Don't modify this file directly: add a consts object to your config.json to add overrides.
 
 const consts = {
     regex: {
         action: /^\S+ (joined|left) the game$/,
-        chat: /^<(.+)> (.+)$/,
+        chat: /^<(\w+)> (.+)$/,
         info: /^\[.+] \[Server thread\/INFO]: (.+)$/,
         me: /^\* (\w+) (.+)$/
     },
