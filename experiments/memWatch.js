@@ -7,7 +7,6 @@ module.exports = (pterodactyl, maxmem) => {
         const mem = parseMem(proc.data.memory)
         const formatted = formatMemory(mem, maxmem)
         const now = Math.floor(new Date() / 1000)
-        console.log('Memory: ' + formatted)
 
         if(mem.percent > maxmem && (lastRestart + 60) < now) {
             lastRestart = now
