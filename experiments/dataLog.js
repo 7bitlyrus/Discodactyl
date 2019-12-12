@@ -53,8 +53,6 @@ function write(config) {
     ]
     const line = arr.join(',')
     fs.appendFileSync(file, line + '\n');
-
-    console.log(line)
 }
 
 function now() {
