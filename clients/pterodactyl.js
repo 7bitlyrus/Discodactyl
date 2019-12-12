@@ -23,6 +23,7 @@ module.exports = (config) => {
 
     // Errors
     socket.on('error', (err) => {
+        if(err.includes('permission')) throw new Error(`Pterodactyl returned error: ${err}`)
         console.log(`[pterodactyl] Error: ${err}`)
     });
     
