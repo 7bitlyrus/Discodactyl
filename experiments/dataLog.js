@@ -1,5 +1,5 @@
 const fs = require('fs');
-const R_behind = /\[.+] \[Server thread\/WARN]: Can't keep up! Is the server overloaded\? Running (\d+)ms or \d+ ticks behind/
+const R_behind = /^\[.+] \[Server thread\/WARN]: Can't keep up! Is the server overloaded\? Running (\d+)ms or \d+ ticks behind$/
 
 const data = {
     behind: {ms: 0, at: 0},
