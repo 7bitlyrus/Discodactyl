@@ -5,6 +5,4 @@ const pterodactyl = require('./clients/pterodactyl.js')(config.pterodactyl || {}
 const discord = require('./clients/discord.js')(config.discord || {})
 
 require('./bridge')(discord, pterodactyl, consts)
-
-require('./experiments/memWatch.js')(pterodactyl, config.experiments.memlimit || NaN)
-require('./experiments/dataLog.js')(pterodactyl, config.experiments.datalog || {})
+require('./misc/memWatch.js')(pterodactyl, config.memlimit || NaN)
