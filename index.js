@@ -1,4 +1,4 @@
-const config = require('./config.json')
+const config = require('./config.js')
 
 const consts = require('./consts.js')(config.consts || {})
 const pterodactyl = require('./clients/pterodactyl.js')(config.pterodactyl || {})
