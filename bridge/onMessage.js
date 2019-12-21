@@ -3,12 +3,12 @@ module.exports = (discord, pterodactyl, config) => {
 
     discord.on('message', (msg) => {
         if(msg.channel.id == msg.client._chat.id && validMember(msg)) {
-            const str = msg.cleanContent
-            if(msg.cleanContent.length > 256) str = str.substring(0, 256) + '...'
-
             const tellraw = config.bridge.minecraft.tellraw
             const leaf = config._leaf
             const jsonObj = tellraw.json
+
+            const str = msg.cleanContent
+            if(msg.cleanContent.length > 256) str = str.substring(0, 256) + '...'
 
             leaf(jsonObj, tellraw.set.userColor, nearestColor(msg.member.displayHexColor).name)
             leaf(jsonObj, tellraw.set.userDisplay, msg.member.displayName)
