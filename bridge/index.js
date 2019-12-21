@@ -3,8 +3,10 @@ const webhookMgr = require('./webhook.js')
 
 module.exports = (discord, pterodactyl, config) => {
     require('./onMessage.js')(discord, pterodactyl, config)
-    const bridge = config.bridge
 
+    // require('./mcLang.js')(config)
+
+    const bridge = config.bridge
     var logBucket  = new MsgBucket(bridge.updateInterval, true)
     var chatBucket = new MsgBucket(bridge.updateInterval)
 
@@ -22,8 +24,8 @@ module.exports = (discord, pterodactyl, config) => {
         const info = con.line.match(bridge.minecraft.regex.info)
         if(!info) return
 
-        const actionMessage = info[1].match(bridge.minecraft.regex.action)
-        if(actionMessage) chatBucket.addMessage(`**${actionMessage[0]}**`) // todo: death messages, advancements
+        /*const actionMessage = info[1].match(bridge.minecraft.regex.action)
+        if(actionMessage) chatBucket.addMessage(`**${actionMessage[0]}**`) // todo: death messages, advancements*/
         
         const chatMessage = info[1].match(bridge.minecraft.regex.chat)
         if(chatMessage) chatMethod(chatMessage[1], chatMessage[2], discord, bridge, chatBucket)

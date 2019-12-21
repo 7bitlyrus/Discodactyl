@@ -31,6 +31,7 @@ const defaults = {
             "avatarApi": "https://crafatar.com/avatars/$UUID"
          },
          "minecraft": {
+            "version": "release",
             "colors": {
                 'black': '#000000',
                 'dark_blue': '#0000AA',
@@ -50,7 +51,6 @@ const defaults = {
                 'white': '#FFFFFF',
             },
             "regex": {
-                "action": /^\S+ (joined|left) the game$/,
                 "chat": /^<(\w+)> (.+)$/,
                 "info": /^\[.+] \[Server thread\/INFO]: (.+)$/,
                 "me": /^\* (\w+) (.+)$/
