@@ -37,11 +37,6 @@ module.exports = (config) => {
         throw new Error('Discord channel configuration is not set.')
     }
 
-    /* // Sanity check ops
-    if(!config.ops)       config.ops   = {}
-    if(!config.ops.roles) config.roles = []
-    if(!config.ops.users) config.users = [] */
-
     if(!config.webhook || !config.webhook.id || !config.webhook.token) {
         config.webhook  = {}
         client._webhook = undefined

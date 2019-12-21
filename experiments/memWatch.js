@@ -1,4 +1,6 @@
-module.exports = (pterodactyl, maxmem) => {
+module.exports = (pterodactyl, config) => {
+    if(!config.enabled) return
+    let maxmem      = config.limit
     let lastRestart = 0
 
     pterodactyl.on('proc', function(proc) {
