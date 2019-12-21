@@ -8,7 +8,6 @@ const client = new Discord.Client({
 
 client.on('ready', () => {
     console.log(`[discord] Logged in as ${client.user.tag}.`);
-    // if(!client._config.prefix) client._config.prefix = `<${client.user.id}> `
     client._chat = client.channels.get(client._config.channels.chat) 
     client._log  = client.channels.get(client._config.channels.log)
 });
@@ -37,17 +36,13 @@ module.exports = (config) => {
         throw new Error('Discord channel configuration is not set.')
     }
 
-    if(!config.webhook || !config.webhook.id || !config.webhook.token) {
-        config.webhook  = {}
-        client._webhook = undefined
-    } else {
-        client._webhook = new Discord.WebhookClient(config.webhook.id, config.webhook.token, {
+    client._webhook = (config.webhook && config.webhook.id && config.webhook.token) ?
+        new Discord.WebhookClient(config.webhook.id, config.webhook.token, {
             "disableEveryone": true
-        })
-    }
+        }) : undefined
 
-    client._config = config
     client.login(config.token);
+    client._config = config
     
     return client
 }
