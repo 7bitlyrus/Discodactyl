@@ -60,15 +60,18 @@ const defaults = {
                     {
                         "text": "",
                         "color": "",
-                        "hoverEvent": {"action":"show_text","value":[{"text":""}]}
+                        "clickEvent": {"action": "suggest_command","value": ""},
+                        "hoverEvent": {"action":"show_text","value":[{"text":""},{"text":"\n"},{"text":""}]}
                     },
                     {"text": ": ", "color": "white"},
                     {"text": "", "color": "white"}
                 ],
                 "set": {
-                    "userDisplay": '1.text',
-                    "userTag": '1.hoverEvent.value.0.text',
                     "userColor": '1.color',
+                    "userDisplay": '1.text',
+                    "userId": '1.hoverEvent.value.2.text',
+                    "userMention": '1.clickEvent.value',
+                    "userTag": '1.hoverEvent.value.0.text',
                     "message": '3.text'
                 }
             }

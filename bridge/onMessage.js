@@ -10,9 +10,11 @@ module.exports = (discord, pterodactyl, config) => {
             const leaf = config._leaf
             const jsonObj = tellraw.json
 
-            leaf(jsonObj, tellraw.set.userDisplay, msg.member.displayName)
-            leaf(jsonObj, tellraw.set.userTag, msg.author.tag)
             leaf(jsonObj, tellraw.set.userColor, nearestColor(msg.member.displayHexColor).name)
+            leaf(jsonObj, tellraw.set.userDisplay, msg.member.displayName)
+            leaf(jsonObj, tellraw.set.userId, msg.author.id)
+            leaf(jsonObj, tellraw.set.userMention, msg.author + " ")
+            leaf(jsonObj, tellraw.set.userTag, msg.author.tag)
             leaf(jsonObj, tellraw.set.message, str)
 
             const json = JSON.stringify(jsonObj)
