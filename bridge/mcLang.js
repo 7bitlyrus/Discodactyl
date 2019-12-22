@@ -8,21 +8,26 @@ async function init(config, resolve) {
     const lang = fs.existsSync('lang.json') ? require('../lang.json') : {}
     let clang
 
+    console.log('[mclang] Checking version...')
     const ver = config.bridge.minecraft.version
     if(ver.toLowerCase() == 'release' || ver.toLowerCase() == 'snapshot' || lang.version != ver) {
         clang = await download(ver, lang)
     } else {
+        console.log('[mclang] No version change.')
         clang = lang
     }
-    /*let strs = []
-    Object.keys(obj).forEach(function(key) {
 
-        console.log(key, obj[key]);
-      
-    });*/
+    console.log('[mclang] Building regex...')
+    let regs = []
+    Object.keys(clang).forEach((key) => {
+        if(key.match(config.bridge.minecraft.lang_action_regex)) regs.push(toRegex(clang[key]))
+    })
+    const regexs = regs.filter((elem, pos) => regs.indexOf(elem) == pos)
+    console.log('[mclang] Done.')
 
     return resolve({
         ready: true,
+        regexs,
         chat: {
             txt: toRegex(clang['chat.type.text']),
             me:  toRegex(clang['chat.type.emote']),
@@ -32,7 +37,7 @@ async function init(config, resolve) {
 }
 
 async function download(ver, curlang, cb) {
-    console.log('[MCLANG] Downloading manifest...')
+    console.log('[mclang] Downloading version manifest...')
     const data = await rp({
         uri: 'https://launchermeta.mojang.com/mc/game/version_manifest.json',
         json: true
@@ -41,16 +46,16 @@ async function download(ver, curlang, cb) {
     const versionId   = ver.toLowerCase() == 'release' ? data.latest.release :
     ver.toLowerCase() == 'snapshot' ? data.latest.snapshot : ver.toLowerCase()
     if(versionId == curlang.version) {
-        console.log('[MCLANG] No version change, ignoring.')
+        console.log('[mclang] No version change via manifest.')
         return curlang
     }
     const versionInfo = data.versions.find(e => e.id == versionId) || data.versions[0];
 
-    console.log('[MCLANG] Downloading JAR...')
+    console.log('[mclang] Downloading JAR...')
     const version   = await rp({uri: versionInfo.url, json: true})
     const serverJar = await rp({uri: version.downloads.server.url, encoding: null})
 
-    console.log('[MCLANG] Extracting language file...')
+    console.log('[mclang] Extracting language file...')
     const zip = new AdmZip(serverJar);
     const txt = zip.readAsText("assets/minecraft/lang/en_us.json");
 
@@ -60,7 +65,7 @@ async function download(ver, curlang, cb) {
     const json = JSON.stringify(lang);
     fs.writeFileSync('lang.json', json);
 
-    console.log('[MCLANG] Done.')
+    console.log('[MCLANG] Write completed.')
     return lang
 }
 

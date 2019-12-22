@@ -23,10 +23,6 @@ module.exports = (discord, pterodactyl, config) => {
 
         const info = con.line.match(bridge.minecraft.info_regex)
         if(!discord._chat || !info || !lang.ready) return
-
-        // patch to have join annd leaves until proper parsing is done
-        const actionMessage = info[1].match(/^\S+ (joined|left) the game$/)
-        if(actionMessage) chatBucket.addMessage(`**${actionMessage[0]}**`)
         
         opts = {discord, bridge, chatBucket}
 
@@ -40,6 +36,14 @@ module.exports = (discord, pterodactyl, config) => {
             if(say[1] == "Server") chatBucket.addMessage(`> **${say[2]}**`)
             else chatMethod(say[1], say[2], opts, 'say')
         }
+
+        lang.regexs.some((regex) => {
+            const match = info[1].match(regex)
+            if(match) {
+                chatBucket.addMessage(`**${match[0]}**`)
+                return true
+            }
+        }) 
     });
 
     pterodactyl.on('status', function(status) {

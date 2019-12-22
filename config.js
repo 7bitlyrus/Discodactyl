@@ -53,6 +53,7 @@ const defaults = {
                 'white': '#FFFFFF',
             },
             "info_regex": /^\[.+] \[Server thread\/INFO]: (.+)$/,
+            "lang_action_regex": /^(death|multiplayer\.player|chat\.type\.advancement)\..+$/,
             "tellraw": {
                 "prefix": "/tellraw @a ",
                 "json": [
