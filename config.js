@@ -23,7 +23,7 @@ const defaults = {
      "memlimit": {
         "enabled": false,
         "limit": 0.95,
-        "message": "Server restarting to prevent instability in 15 seconds!",
+        "msg": "Server restarting to prevent instability in 15 seconds!",
         "delay": 15
      },
      "bridge": {

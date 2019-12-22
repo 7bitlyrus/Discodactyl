@@ -11,7 +11,7 @@ module.exports = (pterodactyl, config) => {
         if(mem.percent > config.limit && (lastRestart + 60) < now) {
             lastRestart = now
 
-            pterodactyl.emit('send command', config.msg)
+            pterodactyl.emit('send command', `say ${config.msg}`)
             pterodactyl.emit('send command', `save-all`)
             setTimeout(() => pterodactyl.emit('set status', 'restart'), config.delay*1000)
         }
