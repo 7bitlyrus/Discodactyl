@@ -6,10 +6,13 @@ module.exports = (config) => new Promise((resolve) => init(config, resolve))
 
 async function init(config, resolve) {
     const lang = fs.existsSync('lang.json') ? require('../lang.json') : {}
+    let clang
 
     const ver = config.bridge.minecraft.version
     if(ver.toLowerCase() == 'release' || ver.toLowerCase() == 'snapshot' || lang.version != ver) {
-        await download(ver, lang)
+        clang = await download(ver, lang)
+    } else {
+        clang = lang
     }
     /*let strs = []
     Object.keys(obj).forEach(function(key) {
@@ -21,9 +24,9 @@ async function init(config, resolve) {
     return resolve({
         ready: true,
         chat: {
-            txt: toRegex(lang['chat.type.text']),
-            me:  toRegex(lang['chat.type.emote']),
-            say: toRegex(lang['chat.type.announcement'])
+            txt: toRegex(clang['chat.type.text']),
+            me:  toRegex(clang['chat.type.emote']),
+            say: toRegex(clang['chat.type.announcement'])
         }
     })
 }
