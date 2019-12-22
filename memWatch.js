@@ -13,7 +13,7 @@ module.exports = (pterodactyl, config) => {
 
             pterodactyl.emit('send command', config.msg)
             pterodactyl.emit('send command', `save-all`)
-            setTimeout(() => pterodactyl.emit('set status', 'restart'), config.delay)
+            setTimeout(() => pterodactyl.emit('set status', 'restart'), config.delay*1000)
         }
     })
 }
