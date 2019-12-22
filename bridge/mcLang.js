@@ -11,8 +11,21 @@ async function init(config, resolve) {
     if(ver.toLowerCase() == 'release' || ver.toLowerCase() == 'snapshot' || lang.version != ver) {
         await download(ver, lang)
     }
+    /*let strs = []
+    Object.keys(obj).forEach(function(key) {
 
-    resolve('')
+        console.log(key, obj[key]);
+      
+    });*/
+
+    return resolve({
+        ready: true,
+        chat: {
+            txt: toRegex(lang['chat.type.text']),
+            me:  toRegex(lang['chat.type.emote']),
+            say: toRegex(lang['chat.type.announcement'])
+        }
+    })
 }
 
 async function download(ver, curlang, cb) {
@@ -46,4 +59,13 @@ async function download(ver, curlang, cb) {
 
     console.log('[MCLANG] Done.')
     return lang
+}
+
+function toRegex(str) {
+    return new RegExp(str
+        .replace(/%(\d\$)?s/g, '\uE621') // private use char so it doesn't get escaped
+        .replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
+        .replace(/\uE621/g, '(.+?)')
+        .replace(/^/, '^')
+        .replace(/$/, '$'))
 }

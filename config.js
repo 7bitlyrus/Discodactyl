@@ -50,11 +50,7 @@ const defaults = {
                 'yellow': '#FFFF55',
                 'white': '#FFFFFF',
             },
-            "regex": {
-                "chat": /^<(\w+)> (.+)$/,
-                "info": /^\[.+] \[Server thread\/INFO]: (.+)$/,
-                "me": /^\* (\w+) (.+)$/
-            },
+            "info_regex": /^\[.+] \[Server thread\/INFO]: (.+)$/,
             "tellraw": {
                 "prefix": "/tellraw @a ",
                 "json": [
