@@ -41,6 +41,10 @@ module.exports = (discord, pterodactyl, config) => {
             else chatMethod(say[1], say[2], opts, 'say')
         }
     });
+
+    pterodactyl.on('status', function(status) {
+        chatBucket.addMessage(`__The server is now ${config.pterodactyl.status_texts[status.status]}.__`)
+    })
 }
 
 function chatMethod(ply, msg, opts, type = null) {

@@ -1,11 +1,13 @@
 // If you are looking to modify your config, edit/create config.json instead of editing this file.
 const user = require('./config.json')
+const deepmerge = require('deepmerge');
 
 const defaults = {
     "pterodactyl": {
         "daemon": undefined,
         "server": undefined,
-        "token": undefined
+        "token": undefined,
+        "status_texts": ['offline', 'online', 'starting', 'stopping']
      },
      "discord": {
         "token": undefined,
@@ -77,7 +79,7 @@ const defaults = {
      }
 }
 
-const config = Object.assign({}, defaults, user);
+const config = deepmerge(defaults, user);
 
 // https://stackoverflow.com/a/46818701
 config._leaf = (obj, path, value) => {
