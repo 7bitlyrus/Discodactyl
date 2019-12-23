@@ -7,7 +7,7 @@ module.exports = (discord, pterodactyl, config) => {
             const leaf = config._leaf
             const jsonObj = tellraw.json
 
-            const str = msg.cleanContent
+            var str = msg.cleanContent
             if(msg.cleanContent.length > 256) str = str.substring(0, 256) + '...'
 
             leaf(jsonObj, tellraw.set.userColor, nearestColor(msg.member.displayHexColor).name)
