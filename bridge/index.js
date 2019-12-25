@@ -39,7 +39,7 @@ module.exports = (discord, pterodactyl, config) => {
 
         lang.regexs.some((regex) => {
             const match = info[1].match(regex)
-            if(match) {
+            if(match && !match[0].includes(bridge.minecraft.action_blacklist_str)) {
                 chatBucket.addMessage(`**${match[0]}**`)
                 return true
             }

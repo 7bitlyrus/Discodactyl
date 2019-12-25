@@ -54,6 +54,7 @@ const defaults = {
             },
             "info_regex": /^\[.+] \[Server thread\/INFO]: (.+)$/,
             "lang_action_regex": /^(death|multiplayer\.player|chat\.type\.advancement)\..+$/,
+            "action_blacklist_str": 'died, message:',
             "tellraw": {
                 "prefix": "/tellraw @a ",
                 "json": [
