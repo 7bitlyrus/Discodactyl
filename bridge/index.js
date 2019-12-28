@@ -30,11 +30,12 @@ module.exports = (discord, pterodactyl, config) => {
         const me  = info[1].match(lang.chat.me)
         const say = info[1].match(lang.chat.say)
 
-        if(txt) chatMethod(txt[1], txt[2], opts)
-        if(me) chatMethod(me[1], me[2], opts, 'me')
+        if(txt) return chatMethod(txt[1], txt[2], opts)
+        if(me)  return chatMethod(me[1], me[2], opts, 'me')
         if(say) {
             if(say[1] == "Server") chatBucket.addMessage(`> **${say[2]}**`)
             else chatMethod(say[1], say[2], opts, 'say')
+            return
         }
 
         lang.regexs.some((regex) => {
