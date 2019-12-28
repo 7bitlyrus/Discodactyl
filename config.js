@@ -32,6 +32,7 @@ const defaults = {
             "userCacheTime": 3600,
             "avatarApi": "https://crafatar.com/avatars/$UUID"
          },
+         "msgTrimEmoji": "\uD83D\uDCAC", // U+1F4AC SPEECH BALLOON
          "minecraft": {
             "version": "release",
             "colors": {

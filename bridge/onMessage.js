@@ -8,7 +8,10 @@ module.exports = (discord, pterodactyl, config) => {
             const jsonObj = tellraw.json
 
             var str = msg.cleanContent
-            if(msg.cleanContent.length > 256) str = str.substring(0, 256) + '...'
+            if(msg.cleanContent.length > 256) {
+                str = str.substring(0, 256) + '...'
+                msg.react(config.bridge.msgTrimEmoji)
+            }
 
             leaf(jsonObj, tellraw.set.userColor, nearestColor(msg.member.displayHexColor).name)
             leaf(jsonObj, tellraw.set.userDisplay, msg.member.displayName)
