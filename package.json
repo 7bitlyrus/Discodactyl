@@ -1,0 +1,29 @@
+{
+  "name": "discodactyl",
+  "version": "1.0.0",
+  "description": "Discord to Minecraft chat bridge via Pterodactyl Panel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IanMurray/Discodactyl.git"
+  },
+  "author": "Ian Murray",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IanMurray/Discodactyl/issues"
+  },
+  "homepage": "https://github.com/IanMurray/Discodactyl#readme",
+  "dependencies": {
+    "adm-zip": "^0.4.14",
+    "deepmerge": "^4.2.2",
+    "discord.js": "^12.2.0",
+    "minecraft-api": "0.0.3",
+    "nearest-color": "^0.4.4",
+    "request": "^2.88.2",
+    "request-promise-native": "^1.0.8",
+    "socket.io-client": "^2.3.0"
+  }
+}
