@@ -33,7 +33,7 @@ Bucket.prototype.update = function () {
     if(this._enabled && this._messages.length > 0) {
         var str = this._messages.join('\n')
 
-        if(this._monospace) str = '`' + str + '`'
+        if(this._monospace) str = '```' + str + '```'
         this._channel.send(str, {split: true}) // split just in case
 
         this.clear()
