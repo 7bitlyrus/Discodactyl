@@ -8,8 +8,8 @@ const client = new Discord.Client({
 
 client.on('ready', () => {
     console.log(`[discord] Logged in as ${client.user.tag}.`);
-    client._chat = client.channels.get(client._config.channels.chat) 
-    client._log  = client.channels.get(client._config.channels.log)
+    client._chat = client.channels.get(client._config.channels.cache.chat) 
+    client._log  = client.channels.get(client._config.channels.cache.log)
 });
 
 client.on('error', (err) => {
