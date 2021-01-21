@@ -32,8 +32,9 @@ Bucket.prototype.enable = function(channel) {
 Bucket.prototype.update = function () {
     if(this._enabled && this._messages.length > 0) {
         var str = this._messages.join('\n')
+        str = str.replace(/\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])/ig, '')
 
-        if(this._monospace) str = '`' + str + '`'
+        if(this._monospace) str = '```' + str + '```'
         this._channel.send(str, {split: true}) // split just in case
 
         this.clear()
