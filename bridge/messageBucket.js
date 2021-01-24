@@ -34,7 +34,7 @@ Bucket.prototype.update = function () {
         var str = this._messages.join('\n')
         str = str.replace(/\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])/ig, '')
 
-        if(this._monospace) str = '```' + str + '```'
+        if(this._monospace) str = '```\n' + str + '```\n'
         this._channel.send(str, {split: true}) // split just in case
 
         this.clear()
